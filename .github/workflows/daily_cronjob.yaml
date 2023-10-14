@@ -20,13 +20,13 @@ jobs:
         mkdir -p sheet
         echo "${SERVICE_ACCOUNT}" > sheet/service-account.json
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
+    - name: Setup bun 🔧
+      uses: oven-sh/setup-bun@v1
       with:
-        node-version: '16'
+        bun-version: latest
 
     - name: Install dependencies
-      run: npm install --omit=dev
+      run: bun i --production
 
     - name: Run job
       env:
@@ -36,4 +36,4 @@ jobs:
         MONGODB_URI             : ${{ secrets.MONGODB_URI }}
         DATA_DOG_API_KEY        : ${{ secrets.DATA_DOG_API_KEY }}
         DATA_DOG_APP_KEY        : ${{ secrets.DATA_DOG_APP_KEY }}
-      run: npm start
+      run: bun run bun-start
