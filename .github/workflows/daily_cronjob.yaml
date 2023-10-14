@@ -16,11 +16,9 @@ jobs:
     - name: Load Secret Key to File
       env:
         SERVICE_ACCOUNT: ${{ secrets.SERVICE_ACCOUNT }}
-        HEADER: ${{ secrets.HEADER }}
       run: |
         mkdir -p sheet
         echo "${SERVICE_ACCOUNT}" > sheet/service-account.json
-        echo "${HEADER}" > header.json
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -28,12 +26,14 @@ jobs:
         node-version: '16'
 
     - name: Install dependencies
-      run: npm install
+      run: npm install --omit=dev
 
     - name: Run job
       env:
-        DATA_DOG_TOKEN: ${{ secrets.DATA_DOG_TOKEN }}
-        GOOGLE_SHEET_EMAIL: ${{ secrets.GOOGLE_SHEET_EMAIL }}
-        GOOGLE_SHEET_ID: ${{ secrets.GOOGLE_SHEET_ID }}
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-      run: node index.js
+        DATA_DOG_TOKEN          : ${{ secrets.DATA_DOG_TOKEN }}
+        GOOGLE_SHEET_EMAIL      : ${{ secrets.GOOGLE_SHEET_EMAIL }}
+        GOOGLE_SHEET_ID         : ${{ secrets.GOOGLE_SHEET_ID }}
+        MONGODB_URI             : ${{ secrets.MONGODB_URI }}
+        DATA_DOG_API_KEY        : ${{ secrets.DATA_DOG_API_KEY }}
+        DATA_DOG_APP_KEY        : ${{ secrets.DATA_DOG_APP_KEY }}
+      run: npm start

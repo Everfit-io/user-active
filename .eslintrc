@@ -1,14 +1,23 @@
 {
   "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:unicorn/recommended",
     "airbnb-base",
-    "plugin:unicorn/recommended"
+    "airbnb-typescript/base"
   ],
   "plugins": [
-    "unicorn"
+    "unicorn",
+    "@typescript-eslint"
   ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
   "rules": {
     "unicorn/prefer-module": "off",
     "unicorn/prefer-node-protocol": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "function-paren-newline": "off",
+    "unicorn/prefer-top-level-await": "off"
   }
 }
