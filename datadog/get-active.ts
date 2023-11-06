@@ -35,7 +35,7 @@ const getActive = async (
                 metric: '@user.id',
               },
               search: {
-                query: `@endpoint:*/api/profile/v2/* env:prd @user.is_trainer:${isTrainer}`,
+                query: `@endpoint:*/api/profile/v2/* service:api-prd @user.is_trainer:${isTrainer}`,
               },
               indexes: ['*'],
               groupBy: [],
