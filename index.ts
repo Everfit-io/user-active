@@ -87,11 +87,15 @@ const report = async (targetDate: string) => {
   await mongoose.connect(MONGODB_URI);
   console.timeEnd('Connect mongodb');
 
-  DateTime.now();
   const yesterday = DateTime.local({ zone: TIMEZONE }).minus({ day: 1 });
   const target = yesterday.toFormat('yyyy-MM-dd');
   console.time('Get report data');
-  const result = await report(target);
+  let result = await report(target);
+  if (Object.values(result).includes(0)) {
+    console.error('Get empty report data', result);
+    console.error('Retrying');
+    result = await report(target);
+  }
   console.timeEnd('Get report data');
 
   console.time(`Push data to google sheet: ${target}`);
