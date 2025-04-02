@@ -8,6 +8,7 @@ const configuration = client.createConfiguration({
     apiKeyAuth: DATA_DOG_API_KEY,
     appKeyAuth: DATA_DOG_APP_KEY,
   },
+  maxRetries: 3,
 });
 configuration.unstableOperations['v2.queryScalarData'] = true;
 
