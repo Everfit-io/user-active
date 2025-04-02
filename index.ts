@@ -81,6 +81,20 @@ const report = async (targetDate: string) => {
   };
 };
 
+function getTargetFromEnvironment(): string | undefined {
+  const inputDate = process.env.INPUT_DATE;
+  if (!inputDate) {
+    return undefined;
+  }
+
+  // check yyyy-MM-dd with luxon
+  const date = DateTime.fromFormat(inputDate, 'yyyy-MM-dd');
+  if (!date.isValid) {
+    throw new Error('Invalid date format. Please use yyyy-MM-dd');
+  }
+  return date.toFormat('yyyy-MM-dd');
+}
+
 (async () => {
   console.time('Finish');
   console.time('Connect mongodb');
@@ -88,7 +102,8 @@ const report = async (targetDate: string) => {
   console.timeEnd('Connect mongodb');
 
   const yesterday = DateTime.local({ zone: TIMEZONE }).minus({ day: 1 });
-  const target = yesterday.toFormat('yyyy-MM-dd');
+  const target = getTargetFromEnvironment() || yesterday.toFormat('yyyy-MM-dd');
+
   console.time('Get report data');
   let result = await report(target);
   if (Object.values(result).includes(0)) {
