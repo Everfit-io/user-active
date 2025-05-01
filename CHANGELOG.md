@@ -1,3 +1,7 @@
+## Release 2025-05-01
+
+- fix(datadog): implement automatic retry mechanism with 3 attempts
+
 ## Release 2025-04-01
 
 - ci(github-actions): update .github/workflows/auto-release.yml to auto-update CHANGELOG.md
