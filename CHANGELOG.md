@@ -1,3 +1,7 @@
+## Release 2025-06-01
+
+- chore(release): update CHANGELOG for 2025-05-01
+
 ## Release 2025-05-01
 
 - fix(datadog): implement automatic retry mechanism with 3 attempts
