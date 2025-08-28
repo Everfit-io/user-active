@@ -33,7 +33,7 @@ const getActive = async (
               dataSource: 'logs',
               compute: {
                 aggregation: 'cardinality',
-                metric: '@user.id',
+                metric: '@user.account_id',
               },
               search: {
                 query: `@endpoint:*/api/profile/v2/* service:api-prd @user.is_trainer:${isTrainer}`,
