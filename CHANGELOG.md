@@ -1,3 +1,7 @@
+## Release 2025-09-01
+
+- fix(datadog): group user by account_id instead of id
+
 ## Release 2025-08-01
 
 - chore(release): update CHANGELOG for 2025-07-01
