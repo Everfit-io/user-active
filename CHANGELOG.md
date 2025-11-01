@@ -1,3 +1,7 @@
+## Release 2025-11-01
+
+- chore(release): update CHANGELOG for 2025-10-01
+
 ## Release 2025-10-01
 
 - chore(release): update CHANGELOG for 2025-09-01
